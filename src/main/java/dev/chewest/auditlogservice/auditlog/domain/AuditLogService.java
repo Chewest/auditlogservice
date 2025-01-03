@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Slf4j
 public class AuditLogService {
@@ -17,7 +19,11 @@ public class AuditLogService {
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public AuditLog saveAuditLog(AuditLog auditLog){
+    public AuditLog saveAuditLog(AuditLog auditLog) {
         return auditLogRepository.save(auditLog);
+    }
+
+    public List<AuditLog> findByAssetId(String assetId) {
+        return auditLogRepository.findByAssetId(assetId);
     }
 }
