@@ -1,5 +1,7 @@
 package dev.chewest.auditlogservice.auditlog.domain;
 
+import dev.chewest.auditlogservice.employee.domain.Employee;
+import dev.chewest.auditlogservice.product.domain.Product;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -19,4 +21,17 @@ public class AuditLog {
     @Enumerated(value = EnumType.STRING)
     private TransactionStatus transactionStatus;
 
+    public AuditLog(Product product){
+        this.asset = "Product";
+        this.message = product.getMessage();
+        this.assetId = product.getId().toString();
+        this.key = product.getKey();
+    }
+
+    public AuditLog(Employee employee){
+        this.asset = "Employee";
+        this.message = employee.getMessage();
+        this.assetId = employee.getId().toString();
+        this.key = employee.getKey();
+    }
 }

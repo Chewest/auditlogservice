@@ -23,51 +23,46 @@ public class AuditLogEventListener {
 
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     public void handleSuccessfulEvent(CustomEvent event) {
+
+        AuditLog saved = null;
+
         switch (event.getSource()) {
             case Product product -> {
-                var auditLog = new AuditLog();
-                auditLog.setAsset("Product");
+                var auditLog = new AuditLog(product);
                 auditLog.setTransactionStatus(TransactionStatus.SUCCEEDED);
-                auditLog.setMessage(product.getMessage());
-                auditLog.setKey(product.getKey());
-                auditLog.setAssetId(product.getId().toString());
-                auditLogService.saveAuditLog(auditLog);
+                saved = auditLogService.saveAuditLog(auditLog);
             }
             case Employee employee -> {
-                var auditLog = new AuditLog();
-                auditLog.setAsset("Employee");
+                var auditLog = new AuditLog(employee);
                 auditLog.setTransactionStatus(TransactionStatus.SUCCEEDED);
-                auditLog.setMessage(employee.getMessage());
-                auditLog.setKey(employee.getKey());
-                auditLog.setAssetId(employee.getId().toString());
-                auditLogService.saveAuditLog(auditLog);
+                saved = auditLogService.saveAuditLog(auditLog);
             }
             default -> log.info("Not a resolvable type for {}", this);
         }
+        if (saved == null)
+            return;
+        log.info("Persisted new audit log -> {}", saved);
     }
 
     @TransactionalEventListener(phase = TransactionPhase.AFTER_ROLLBACK)
     public void handleFailedEvent(CustomEvent event) {
+        AuditLog saved = null;
+
         switch (event.getSource()) {
             case Product product -> {
-                var auditLog = new AuditLog();
-                auditLog.setAsset("Product");
+                var auditLog = new AuditLog(product);
                 auditLog.setTransactionStatus(TransactionStatus.FAILED);
-                auditLog.setMessage(product.getMessage());
-                auditLog.setKey(product.getKey());
-                auditLog.setAssetId(product.getId().toString());
-                auditLogService.saveAuditLog(auditLog);
+                saved = auditLogService.saveAuditLog(auditLog);
             }
             case Employee employee -> {
-                var auditLog = new AuditLog();
-                auditLog.setAsset("Employee");
+                var auditLog = new AuditLog(employee);
                 auditLog.setTransactionStatus(TransactionStatus.FAILED);
-                auditLog.setMessage(employee.getMessage());
-                auditLog.setKey(employee.getKey());
-                auditLog.setAssetId(employee.getId().toString());
-                auditLogService.saveAuditLog(auditLog);
+                saved = auditLogService.saveAuditLog(auditLog);
             }
             default -> log.info("Not a resolvable type for {}", this);
         }
+        if (saved == null)
+            return;
+        log.info("Persisted new audit log -> {}", saved);
     }
 }
