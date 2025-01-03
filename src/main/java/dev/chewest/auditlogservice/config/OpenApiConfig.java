@@ -15,7 +15,7 @@ public class OpenApiConfig {
                 .info(new Info()
                         .title("API")
                         .version("1.0")
-                        .description("API for managing employees.")
+                        .description("API")
                         .license(new License().name("Apache 2.0").url("http://springdoc.org")));
     }
 }
