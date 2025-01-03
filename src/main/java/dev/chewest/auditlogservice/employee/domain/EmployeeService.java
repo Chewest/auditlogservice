@@ -22,8 +22,8 @@ public class EmployeeService {
     }
 
     @Transactional
-    public void saveEmployee(Employee employee) {
+    public Employee saveEmployee(Employee employee) {
         eventPublisher.publishEvent(new CustomEvent(employee));
-        employeeRepository.save(employee);
+        return employeeRepository.save(employee);
     }
 }

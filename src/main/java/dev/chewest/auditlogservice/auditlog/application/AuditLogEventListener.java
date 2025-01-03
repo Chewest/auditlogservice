@@ -1,9 +1,9 @@
 package dev.chewest.auditlogservice.auditlog.application;
 
 import dev.chewest.auditlogservice.CustomEvent;
-import dev.chewest.auditlogservice.auditlog.domain.TransactionStatus;
 import dev.chewest.auditlogservice.auditlog.domain.AuditLog;
 import dev.chewest.auditlogservice.auditlog.domain.AuditLogService;
+import dev.chewest.auditlogservice.auditlog.domain.TransactionStatus;
 import dev.chewest.auditlogservice.employee.domain.Employee;
 import dev.chewest.auditlogservice.product.domain.Product;
 import lombok.extern.slf4j.Slf4j;
