@@ -1,7 +1,7 @@
 package dev.chewest.auditlogservice.auditlog.application;
 
 import dev.chewest.auditlogservice.CustomEvent;
-import dev.chewest.auditlogservice.auditlog.domain.AssetStatus;
+import dev.chewest.auditlogservice.auditlog.domain.TransactionStatus;
 import dev.chewest.auditlogservice.auditlog.domain.AuditLog;
 import dev.chewest.auditlogservice.auditlog.domain.AuditLogService;
 import dev.chewest.auditlogservice.employee.domain.Employee;
@@ -27,14 +27,18 @@ public class AuditLogEventListener {
             case Product product -> {
                 var auditLog = new AuditLog();
                 auditLog.setAsset("Product");
-                auditLog.setAssetStatus(AssetStatus.SUCCEEDED);
+                auditLog.setTransactionStatus(TransactionStatus.SUCCEEDED);
+                auditLog.setMessage(product.getMessage());
+                auditLog.setKey(product.getKey());
                 auditLog.setAssetId(product.getId().toString());
                 auditLogService.saveAuditLog(auditLog);
             }
             case Employee employee -> {
                 var auditLog = new AuditLog();
                 auditLog.setAsset("Employee");
-                auditLog.setAssetStatus(AssetStatus.SUCCEEDED);
+                auditLog.setTransactionStatus(TransactionStatus.SUCCEEDED);
+                auditLog.setMessage(employee.getMessage());
+                auditLog.setKey(employee.getKey());
                 auditLog.setAssetId(employee.getId().toString());
                 auditLogService.saveAuditLog(auditLog);
             }
@@ -48,14 +52,18 @@ public class AuditLogEventListener {
             case Product product -> {
                 var auditLog = new AuditLog();
                 auditLog.setAsset("Product");
-                auditLog.setAssetStatus(AssetStatus.FAILED);
+                auditLog.setTransactionStatus(TransactionStatus.FAILED);
+                auditLog.setMessage(product.getMessage());
+                auditLog.setKey(product.getKey());
                 auditLog.setAssetId(product.getId().toString());
                 auditLogService.saveAuditLog(auditLog);
             }
             case Employee employee -> {
                 var auditLog = new AuditLog();
                 auditLog.setAsset("Employee");
-                auditLog.setAssetStatus(AssetStatus.FAILED);
+                auditLog.setTransactionStatus(TransactionStatus.FAILED);
+                auditLog.setMessage(employee.getMessage());
+                auditLog.setKey(employee.getKey());
                 auditLog.setAssetId(employee.getId().toString());
                 auditLogService.saveAuditLog(auditLog);
             }

@@ -1,6 +1,6 @@
 package dev.chewest.auditlogservice.auditlog.domain;
 
-public enum AssetStatus {
+public enum TransactionStatus {
     FAILED,
     SUCCEEDED
 }

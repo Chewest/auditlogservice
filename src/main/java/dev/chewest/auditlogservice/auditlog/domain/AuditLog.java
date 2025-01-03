@@ -15,7 +15,8 @@ public class AuditLog {
     private String message;
     private String asset;
     private String assetId;
+    private String key;
     @Enumerated(value = EnumType.STRING)
-    private AssetStatus assetStatus;
+    private TransactionStatus transactionStatus;
 
 }
