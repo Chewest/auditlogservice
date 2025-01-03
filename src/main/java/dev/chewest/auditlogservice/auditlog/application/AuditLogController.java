@@ -2,7 +2,6 @@ package dev.chewest.auditlogservice.auditlog.application;
 
 import dev.chewest.auditlogservice.auditlog.domain.AuditLog;
 import dev.chewest.auditlogservice.auditlog.domain.AuditLogService;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

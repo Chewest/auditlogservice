@@ -4,11 +4,13 @@ import dev.chewest.auditlogservice.employee.domain.Employee;
 import dev.chewest.auditlogservice.product.domain.Product;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
 @Data
 @Entity
+@NoArgsConstructor
 public class AuditLog {
 
     @Id
