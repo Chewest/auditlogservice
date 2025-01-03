@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  auditLogService-db:
+    image: 'postgres:alpine'
+    ports:
+      - "6666:5432"
+    container_name: auditLogService-db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - auditLogService-db:/var/lib/postgresql/data
+
+volumes:
+  auditLogService-db:
+    driver: local
