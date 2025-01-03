@@ -18,8 +18,8 @@ public class UnresolvableTypeService {
     }
 
     @Transactional
-    public void saveUnresolvableType(UnresolvableType unresolvableType) {
+    public UnresolvableType saveUnresolvableType(UnresolvableType unresolvableType) {
         eventPublisher.publishEvent(new CustomEvent(unresolvableType));
-        unresolvableTypeRepository.save(unresolvableType);
+        return unresolvableTypeRepository.save(unresolvableType);
     }
 }

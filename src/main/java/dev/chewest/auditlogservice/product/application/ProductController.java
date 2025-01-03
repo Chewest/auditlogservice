@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
 
-@RestController()
+@RestController
 @RequestMapping("/products")
 public class ProductController {
 

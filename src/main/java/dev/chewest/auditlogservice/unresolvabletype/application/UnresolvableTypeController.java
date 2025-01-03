@@ -4,19 +4,23 @@ import dev.chewest.auditlogservice.unresolvabletype.domain.UnresolvableType;
 import dev.chewest.auditlogservice.unresolvabletype.domain.UnresolvableTypeService;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Component
-public class UnresolvableTypePseudoController {
+@RestController
+@RequestMapping("/test")
+public class UnresolvableTypeController {
 
     private final UnresolvableTypeService unresolvableTypeService;
 
-    public UnresolvableTypePseudoController(UnresolvableTypeService unresolvableTypeService) {
+    public UnresolvableTypeController(UnresolvableTypeService unresolvableTypeService) {
         this.unresolvableTypeService = unresolvableTypeService;
     }
 
-    @Scheduled(fixedRate = 5000)
-    public void publishEvent(){
+    @PostMapping
+    public UnresolvableType createTest(){
         var unresolvableType = new UnresolvableType();
-        unresolvableTypeService.saveUnresolvableType(unresolvableType);
+        return unresolvableTypeService.saveUnresolvableType(unresolvableType);
     }
 }
