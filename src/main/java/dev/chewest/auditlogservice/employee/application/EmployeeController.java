@@ -2,13 +2,15 @@ package dev.chewest.auditlogservice.employee.application;
 
 import dev.chewest.auditlogservice.employee.domain.Employee;
 import dev.chewest.auditlogservice.employee.domain.EmployeeService;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
 
-@Controller("employees")
+@RestController
+@RequestMapping("/employees")
 public class EmployeeController {
     private final EmployeeService employeeService;
 
