@@ -22,7 +22,7 @@ public class DecisionService {
     }
 
     @Transactional
-    public Decision saveEmployee(final Decision decision) {
+    public Decision saveDecision(final Decision decision) {
         eventPublisher.publishEvent(new CustomEvent(decision));
         return decisionRepository.save(decision);
     }

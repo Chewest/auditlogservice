@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/employees")
+@RequestMapping("/decisions")
 public class DecisionController {
     private final DecisionService decisionService;
 
@@ -19,9 +19,9 @@ public class DecisionController {
     }
 
     @PostMapping
-    public Decision createEmployee(@RequestParam final UUID employeeId){
-        var employee = new Decision();
-        employee.setId(employeeId);
-        return decisionService.saveEmployee(employee);
+    public Decision createDecision(@RequestParam final UUID decisionId){
+        var decision = new Decision();
+        decision.setId(decisionId);
+        return decisionService.saveDecision(decision);
     }
 }

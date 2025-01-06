@@ -31,7 +31,7 @@ public class AuditLog {
     }
 
     public AuditLog(Decision decision){
-        this.asset = "Employee";
+        this.asset = "Decision";
         this.message = decision.getMessage();
         this.assetId = decision.getId().toString();
         this.key = decision.getKey();
