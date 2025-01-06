@@ -22,8 +22,10 @@ public class DecisionService {
     }
 
     @Transactional
-    public Decision saveDecision(final Decision decision) {
+    public Decision saveDecision(final Decision decision, final boolean rollBackTransaction) {
         eventPublisher.publishEvent(new CustomEvent(decision));
+        if(rollBackTransaction)
+            throw new RuntimeException();
         return decisionRepository.save(decision);
     }
 }

@@ -19,9 +19,9 @@ public class DecisionController {
     }
 
     @PostMapping
-    public Decision createDecision(@RequestParam final UUID decisionId){
+    public Decision createDecision(@RequestParam final UUID decisionId, @RequestParam final boolean rollBackTransaction){
         var decision = new Decision();
         decision.setId(decisionId);
-        return decisionService.saveDecision(decision);
+        return decisionService.saveDecision(decision, rollBackTransaction);
     }
 }
